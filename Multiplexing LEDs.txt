@@ -1,0 +1,449 @@
+//led numbers
+//1-6 = 6 outer columns (negative)
+//7 = middle column (negative)
+//8 = bottom row (positive)
+//9 = middle row (positive)
+//10 = top row (positive)
+//sets leds and button to pins and as constant variables
+
+const int l1 = 2; //LED1 references pin 2
+const int l2 = 3; //LED1 references pin 3
+const int l3 = 4; //LED1 references pin 4
+const int l4 = 5; //LED1 references pin 5
+const int l5 = 6; //LED1 references pin 6
+const int l6 = 7; //LED1 references pin 7
+const int l7 = 8; //LED1 references pin 8
+const int l8 = 9; //LED1 references pin 9
+const int l9 = 10; //LED1 references pin 10
+const int l10 = 11; //LED1 references pin 11
+
+//set leds to be used as outupts
+void setup() //run once, define pin functions
+{
+ pinMode(l1, OUTPUT); //sets pin 2 as an output
+ pinMode(l2, OUTPUT); //sets pin 3 as an output
+ pinMode(l3, OUTPUT); //sets pin 4 as an output
+ pinMode(l4, OUTPUT); //sets pin 5 as an output
+ pinMode(l5, OUTPUT); //sets pin 6 as an output
+ pinMode(l6, OUTPUT); //sets pin 7 as an output
+ pinMode(l7, OUTPUT); //sets pin 8 as an output
+ pinMode(l8, OUTPUT); //sets pin 9 as an output
+ pinMode(l9, OUTPUT); //sets pin 10 as an output
+ pinMode(l10, OUTPUT); //sets pin 11 as an output
+}
+
+void loop() //keeps looping through code
+{
+ reset();
+ swirl();
+ swirl();
+ opposite();
+ opposite();
+ opposite();
+ opposite();
+ updown();
+ updown();
+ updown();
+ updown();
+}
+
+void reset() //turns all leds off
+{
+ digitalWrite(l1, HIGH);
+ digitalWrite(l2, HIGH);
+ digitalWrite(l3, HIGH);
+ digitalWrite(l4, HIGH);
+ digitalWrite(l5, HIGH);
+ digitalWrite(l6, HIGH);
+ digitalWrite(l7, HIGH);
+ digitalWrite(l8, HIGH);
+ digitalWrite(l9, HIGH);
+ digitalWrite(l10, HIGH);
+ delay(200);
+}
+
+void swirl()
+{
+ //fast swirl
+
+ //turn on bottom middle LED, then circle around bottom
+ digitalWrite(l1, HIGH);
+ digitalWrite(l2, HIGH);
+ digitalWrite(l3, HIGH);
+ digitalWrite(l4, HIGH);
+ digitalWrite(l5, HIGH);
+ digitalWrite(l6, HIGH);
+ digitalWrite(l7, LOW);
+ digitalWrite(l8, HIGH);
+ digitalWrite(l9, LOW);
+ digitalWrite(l10, LOW);
+ delay(100);
+ digitalWrite(l1, LOW);
+ digitalWrite(l7, HIGH);
+ delay(100);
+ digitalWrite(l1, HIGH);
+ digitalWrite(l2, LOW);
+ delay(100);
+ digitalWrite(l2, HIGH);
+ digitalWrite(l3, LOW);
+ delay(100);
+ digitalWrite(l3, HIGH);
+ digitalWrite(l4, LOW);
+ delay(100);
+ digitalWrite(l4, HIGH);
+ digitalWrite(l5, LOW);
+ delay(100);
+ digitalWrite(l5, HIGH);
+ digitalWrite(l6, LOW);
+ delay(100);
+
+ //move up a layer
+ //circle around middle
+ digitalWrite(l1, LOW);
+ digitalWrite(l6, HIGH);
+ digitalWrite(l8, LOW);
+ digitalWrite(l9, HIGH);
+ delay(100);
+ digitalWrite(l1, HIGH);
+ digitalWrite(l2, LOW);
+ delay(100);
+ digitalWrite(l2, HIGH);
+ digitalWrite(l3, LOW);
+ delay(100);
+ digitalWrite(l3, HIGH);
+ digitalWrite(l4, LOW);
+ delay(100);
+ digitalWrite(l4, HIGH);
+ digitalWrite(l5, LOW);
+ delay(100);
+ digitalWrite(l5, HIGH);
+ digitalWrite(l6, LOW);
+ delay(100);
+
+ //move up a layer
+ //circle around top
+ digitalWrite(l1, LOW);
+ digitalWrite(l6, HIGH);
+ digitalWrite(l9, LOW);
+ digitalWrite(l10, HIGH);
+ delay(100);
+ digitalWrite(l1, HIGH);
+ digitalWrite(l2, LOW);
+ delay(100);
+ digitalWrite(l2, HIGH);
+ digitalWrite(l3, LOW);
+ delay(100);
+ digitalWrite(l3, HIGH);
+ digitalWrite(l4, LOW);
+ delay(100);
+ digitalWrite(l4, HIGH);
+ digitalWrite(l5, LOW);
+ delay(100);
+ digitalWrite(l5, HIGH);
+ digitalWrite(l6, LOW);
+ delay(100);
+ digitalWrite(l6, HIGH);
+ digitalWrite(l7, LOW);
+ delay(100);
+
+ //slower swirl, leds overlap
+
+ //turn on bottom middle LED, then circles around bottom
+ digitalWrite(l1, HIGH);
+ digitalWrite(l2, HIGH);
+ digitalWrite(l3, HIGH);
+ digitalWrite(l4, HIGH);
+ digitalWrite(l5, HIGH);
+ digitalWrite(l6, HIGH);
+ digitalWrite(l7, LOW);
+ digitalWrite(l8, HIGH);
+ digitalWrite(l9, LOW);
+ digitalWrite(l10, LOW);
+ delay(150);
+ digitalWrite(l1, LOW);
+ delay(50);
+ digitalWrite(l7, HIGH);
+ delay(150);
+ digitalWrite(l2, LOW);
+ delay(50);
+ digitalWrite(l1, HIGH);
+ delay(150);
+ digitalWrite(l3, LOW);
+ delay(50);
+ digitalWrite(l2, HIGH);
+ delay(150);
+ digitalWrite(l4, LOW);
+ delay(50);
+ digitalWrite(l3, HIGH);
+ delay(150);
+ digitalWrite(l5, LOW);
+ delay(50);
+ digitalWrite(l4, HIGH);
+ delay(150);
+ digitalWrite(l6, LOW);
+ delay(50);
+ digitalWrite(l5, HIGH);
+ delay(200);
+
+ //move up a layer
+ //circle around middle
+ digitalWrite(l1, LOW);
+ digitalWrite(l6, HIGH);
+ digitalWrite(l8, LOW);
+ digitalWrite(l9, HIGH);
+ delay(150);
+ digitalWrite(l2, LOW);
+ delay(50);
+ digitalWrite(l1, HIGH);
+ delay(150);
+ digitalWrite(l3, LOW);
+ delay(50);
+ digitalWrite(l2, HIGH);
+ delay(150);
+ digitalWrite(l4, LOW);
+ delay(50);
+ digitalWrite(l3, HIGH);
+ delay(150);
+ digitalWrite(l5, LOW);
+ delay(50);
+ digitalWrite(l4, HIGH);
+ delay(150);
+ digitalWrite(l6, LOW);
+ delay(50);
+ digitalWrite(l5, HIGH);
+ delay(200);
+
+ //move up a layer
+ //circle around top
+ digitalWrite(l1, LOW);
+ digitalWrite(l6, HIGH);
+ digitalWrite(l9, LOW);
+ digitalWrite(l10, HIGH);
+ delay(150);
+ digitalWrite(l2, LOW);
+ delay(50);
+ digitalWrite(l1, HIGH);
+ delay(150);
+ digitalWrite(l3, LOW);
+ delay(50);
+ digitalWrite(l2, HIGH);
+ delay(150);
+ digitalWrite(l4, LOW);
+ delay(50);
+ digitalWrite(l3, HIGH);
+ delay(150);
+ digitalWrite(l5, LOW);
+ delay(50);
+ digitalWrite(l4, HIGH);
+ delay(150);
+ digitalWrite(l6, LOW);
+ delay(50);
+ digitalWrite(l5, HIGH);
+ delay(150);
+ digitalWrite(l7, LOW);
+ delay(50);
+ digitalWrite(l6, HIGH);
+ delay(150);
+}
+
+void opposite()
+{
+ //bottom and top row opposite, diagonal criss cross pattern
+ //leds that will be on at the same time
+ // r1 r3
+ // c7 and c7
+ // c1 and c4
+ // c5 and c2
+ // c3 and c6
+ //turns on row 1 and 3, column 7
+ digitalWrite(l1, HIGH);
+ digitalWrite(l2, HIGH);
+ digitalWrite(l3, HIGH);
+ digitalWrite(l4, HIGH);
+ digitalWrite(l5, HIGH);
+ digitalWrite(l6, HIGH);
+ digitalWrite(l7, LOW);
+ digitalWrite(l8, HIGH);
+ digitalWrite(l9, LOW);
+ digitalWrite(l10, HIGH);
+ delay(150);
+
+ //turns on row 1 column 1 and row 3 column 4
+ for (int a = 0; a < 15; a++)
+ {
+ digitalWrite(l1, LOW);
+ digitalWrite(l4, HIGH);
+ digitalWrite(l8, HIGH);
+ digitalWrite(l9, LOW);
+ digitalWrite(l10, LOW);
+ delay(5);
+ digitalWrite(l1, HIGH);
+ digitalWrite(l4, LOW);
+ digitalWrite(l8, LOW);
+ digitalWrite(l9, LOW);
+ digitalWrite(l10, HIGH);
+ delay(5);
+ }
+
+ //turns on row 1 column 5 and row 3 column 2
+ for (int a = 0; a < 15; a++)
+ {
+ digitalWrite(l2, HIGH);
+ digitalWrite(l5, LOW);
+ digitalWrite(l8, HIGH);
+ digitalWrite(l9, LOW);
+ digitalWrite(l10, LOW);
+ delay(5);
+ digitalWrite(l2, LOW);
+ digitalWrite(l5, HIGH);
+ digitalWrite(l8, LOW);
+ digitalWrite(l9, LOW);
+ digitalWrite(l10, HIGH);
+ delay(5);
+ }
+
+ //turns on row 1 column 3 and row 3 column 6
+ for (int a = 0; a < 15; a++)
+ {
+ digitalWrite(l3, LOW);
+ digitalWrite(l6, HIGH);
+ digitalWrite(l8, HIGH);
+ digitalWrite(l9, LOW);
+ digitalWrite(l10, LOW);
+ delay(5);
+ digitalWrite(l3, HIGH);
+ digitalWrite(l6, LOW);
+ digitalWrite(l8, LOW);
+ digitalWrite(l9, LOW);
+ digitalWrite(l10, HIGH);
+ delay(5);
+ }
+
+ //leds that will be on at the same time, middle row opposite pattern
+
+ // r2
+ // c1 and c4
+ // c2 and c5
+ // c3 and c6
+ //turns on row 2, column 1 and 4
+ digitalWrite(l1, LOW);
+ digitalWrite(l2, HIGH);
+ digitalWrite(l3, HIGH);
+ digitalWrite(l4, LOW);
+ digitalWrite(l5, HIGH);
+ digitalWrite(l6, HIGH);
+ digitalWrite(l7, HIGH);
+ digitalWrite(l8, LOW);
+ digitalWrite(l9, HIGH);
+ digitalWrite(l10, LOW);
+ delay(150);
+
+ //turns on row 2, column 2 and 5
+ digitalWrite(l1, HIGH);
+ digitalWrite(l2, LOW);
+ digitalWrite(l4, HIGH);
+ digitalWrite(l5, LOW);
+ delay(150);
+
+ //turns on row 2, column 3 and 6
+ digitalWrite(l2, HIGH);
+ digitalWrite(l3, LOW);
+ digitalWrite(l5, HIGH);
+ digitalWrite(l6, LOW);
+ delay(150);
+}
+
+void updown()
+{
+ //goes up and down columns, v pattern
+ //turns on bottom middle led, goes up column 1 until top middle led
+ digitalWrite(l1, HIGH);
+ digitalWrite(l2, HIGH);
+ digitalWrite(l3, HIGH);
+ digitalWrite(l4, HIGH);
+ digitalWrite(l5, HIGH);
+ digitalWrite(l6, HIGH);
+ digitalWrite(l7, LOW);
+ digitalWrite(l8, HIGH);
+ digitalWrite(l9, LOW);
+ digitalWrite(l10, LOW);
+ delay(75);
+ digitalWrite(l1, LOW);
+ delay(75);
+ digitalWrite(l7, HIGH);
+ digitalWrite(l9, HIGH);
+ delay(75);
+ digitalWrite(l8, LOW);
+ digitalWrite(l10, HIGH);
+ delay(75);
+ digitalWrite(l7, LOW);
+ digitalWrite(l9, LOW);
+ delay(75);
+ //goes down column 2
+ digitalWrite(l1, HIGH);
+ digitalWrite(l2, LOW);
+ delay(75);
+ digitalWrite(l7, HIGH);
+ digitalWrite(l9, HIGH);
+ delay(75);
+ digitalWrite(l8, HIGH);
+ digitalWrite(l10, LOW);
+ delay(75);
+ digitalWrite(l7, LOW);
+ digitalWrite(l9, LOW);
+ delay(75);
+ //goes up column 3
+ digitalWrite(l2, HIGH);
+ digitalWrite(l3, LOW);
+ delay(75);
+ digitalWrite(l7, HIGH);
+ digitalWrite(l9, HIGH);
+ delay(75);
+ digitalWrite(l8, LOW);
+ digitalWrite(l10, HIGH);
+ delay(75);
+ digitalWrite(l7, LOW);
+ digitalWrite(l9, LOW);
+ delay(75);
+ //goes down column 4
+ digitalWrite(l3, HIGH);
+ digitalWrite(l4, LOW);
+ delay(75);
+ digitalWrite(l7, HIGH);
+ digitalWrite(l9, HIGH);
+ delay(75);
+ digitalWrite(l8, HIGH);
+ digitalWrite(l10, LOW);
+ delay(75);
+ digitalWrite(l7, LOW);
+ digitalWrite(l9, LOW);
+ delay(75);
+ //goes up column 5
+ digitalWrite(l4, HIGH);
+ digitalWrite(l5, LOW);
+ delay(75);
+ digitalWrite(l7, HIGH);
+ digitalWrite(l9, HIGH);
+ delay(75);
+ digitalWrite(l8, LOW);
+ digitalWrite(l10, HIGH);
+ delay(75);
+ digitalWrite(l7, LOW);
+ digitalWrite(l9, LOW);
+ delay(75);
+ //goes down column 6
+ digitalWrite(l5, HIGH);
+ digitalWrite(l6, LOW);
+ delay(75);
+ digitalWrite(l7, HIGH);
+ digitalWrite(l9, HIGH);
+ delay(75);
+ digitalWrite(l8, HIGH);
+ digitalWrite(l10, LOW);
+ delay(75);
+ digitalWrite(l7, LOW);
+ digitalWrite(l9, LOW);
+ delay(75);
+ digitalWrite(l6, HIGH);
+ delay(75);
+}

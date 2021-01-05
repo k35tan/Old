@@ -1,0 +1,163 @@
+//Programmed Figure 8
+
+const int la = 9;
+const int lb = 5; //Motor Controller output pins
+const int ra = 6;
+const int rb = 3;
+
+void setup()
+{
+ pinMode(la, OUTPUT); //setting digital pins to outputs
+ pinMode(lb, OUTPUT);
+ pinMode(ra, OUTPUT);
+ pinMode(rb, OUTPUT);
+}
+
+void loop()
+{
+ setoff(); //pause to set up robot on the right angle
+ delay(5000);
+ setfor(); //drive forward
+ delay(1500);
+ setright(); //drive right
+ delay(3200);
+ setforl(); //drive forward (slightly left)
+ delay(3000);
+ setleft(); //drive left
+ delay(4000);
+ setfor(); //drive forward
+ delay(1500);
+}
+
+void setfor() //function to turn on motor forwards
+{
+ digitalWrite(la, HIGH);
+ digitalWrite(ra, HIGH);
+ digitalWrite(lb, LOW);
+ digitalWrite(rb, LOW);
+}
+
+void setforl() //function to turn on motor forwards with slight curve to the left (to counteract how the robot
+automatically tends to curve to the right)
+{
+ analogWrite(la, 220); //slow down left motor to 86%
+ digitalWrite(ra, HIGH);
+ digitalWrite(lb, LOW);
+ digitalWrite(rb, LOW);
+}
+
+void setleft() //function to turn left (turn on right wheel, slow down left wheel)
+{
+ analogWrite(la, 100); //slow down left motor to 39%
+ digitalWrite(lb, LOW);
+ digitalWrite(ra, HIGH);
+ digitalWrite(rb, LOW);
+}
+
+void setright() //function to turn right (turn on left wheel, slow down right wheel)
+{
+ digitalWrite(la, HIGH);
+ digitalWrite(lb, LOW);
+ analogWrite(ra, 100); //slow down left motor to 39%
+ digitalWrite(rb, LOW);
+}
+
+void setoff() //function to turn off motor
+{
+ digitalWrite(la, LOW);
+ digitalWrite(lb, LOW);
+ digitalWrite(ra, LOW);
+ digitalWrite(rb, LOW);
+}
+
+
+//Following Robot
+
+int photoR1 = A1; //set the analog pin #1 to be named 'photoR1'
+int photoR2 = A2; //set the analog pin #2 to be named 'photoR2'
+int levelA = 0; //variable to store the value at analog pin #1
+int levelB = 0; //variable to store the value at analog pin #2
+int difflev = 0; //variable to store difference between 'levelA' and 'levelB'
+const int MC1A = 6;
+const int MC1B = 9; //Motor Controller output pins
+const int MC2A = 10;
+const int MC2B = 11;
+
+void setup() 
+{
+ pinMode(MC1A, OUTPUT); //setting digital pins to outputs
+ pinMode(MC1B, OUTPUT);
+ pinMode(MC2A, OUTPUT);
+ pinMode(MC2B, OUTPUT);
+ Serial.begin(9600); //open up serail monitor to check values at photoresistors
+}
+
+void loop() 
+{
+ levelA = analogRead(photoR1); //store value from photoresistor 1 into 'levelA'
+ levelB = analogRead(photoR2); //store value from photoresistor 2 into 'levelB'
+
+ Serial.print(levelA); //print value for 'levelA' in serial monitor
+ Serial.print("\t"); //print an empty 'tab' space
+ Serial.println(levelB); //print value for 'levelB' on same line as 'levelA'
+
+ if (levelB < levelA) { //for photoresistor value 'B < A'
+ difflev = levelA - levelB; //store difference in variable 'difflev'
+ seton(); //turn on both motors forward
+ if (difflev >30) 
+ { 
+ //for a difference greater than 30 slow down motor #1 to 59%
+ analogWrite(MC1A, 150);
+ }
+ if (difflev > 50) 
+ {
+ //for a difference greater than 50 slow down motor #1 to 43%
+ analogWrite(MC1A, 110);
+ }
+ if (difflev > 70)
+ {
+ //for a difference greater than 70 slow down motor #1 to 27%
+ analogWrite(MC1A,70);
+ }
+ }
+
+ if (levelA < levelB) 
+ {
+ //check to see which photo resistor has a higher value 'A < B'
+ difflev = levelB - levelA; //store difference in variable 'difflev'
+ seton(); //turn on both motors forward
+ if (difflev > 30) { //for a difference greater than 200 slow down motor #2 to 59%
+ analogWrite(MC2A, 150);
+ }
+ if (difflev > 50)
+ {
+ //for a difference greater than 200 slow down motor #2 to 43%
+ analogWrite(MC2A, 110);
+ }
+ if (difflev > 70)
+ {
+ //for a difference greater than 200 slow down motor #2 to 27%
+ analogWrite(MC2A, 70);
+ }
+ }
+
+ delay(20); //20 milllisecond delay will be fast and reactive but still able to visualize on the serial monitor
+ }
+
+void seton() 
+{ 
+ //function to turn on both motors forwards
+ digitalWrite(MC1A, HIGH);
+ digitalWrite(MC1B, LOW);
+ digitalWrite(MC2A, HIGH);
+ digitalWrite(MC2B, LOW);
+}
+
+void setoff() 
+{ 
+ //function to turn off both motors
+ digitalWrite(MC1A, LOW);
+ digitalWrite(MC1B, LOW);
+ digitalWrite(MC2A, LOW);
+ digitalWrite(MC2B, LOW);
+}
